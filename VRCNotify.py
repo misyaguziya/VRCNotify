@@ -267,7 +267,7 @@ def main():
         print(colorama.Fore.RED + "プログラムを終了します。")
         exit()
 
-    print(colorama.Fore.WHITE + "1. " + colorama.Fore.YELLOW + "設定お読みます。")
+    print(colorama.Fore.WHITE + "1. " + colorama.Fore.YELLOW + "設定を読みます。")
     print(colorama.Fore.GREEN + "> reading config.json...", end="")
 
     try:
@@ -330,7 +330,7 @@ def main():
     print(colorama.Fore.GREEN + "done.")
     print(colorama.Fore.WHITE + "=============================")
 
-    print(colorama.Fore.WHITE + "3. " + colorama.Fore.YELLOW + "VRCのログ監視お起動ます。")
+    print(colorama.Fore.WHITE + "3. " + colorama.Fore.YELLOW + "VRCのログ監視を起動ます。")
     print(colorama.Fore.GREEN + "> starting watchdog for VRChat's log...", end="")
 
     event_handler = LogEventHandler(
@@ -356,7 +356,7 @@ def main():
         + colorama.Fore.GREEN
         + "INFO"
         + colorama.Fore.WHITE
-        + "] VRCNotifyお正常に起動しました。"
+        + "] VRCNotifyを正常に起動しました。"
     )
     while True:
         try:
