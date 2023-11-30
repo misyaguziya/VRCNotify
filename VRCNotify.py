@@ -24,6 +24,7 @@ class LogEventHandler(watchdog.events.PatternMatchingEventHandler):
         self.is_first = True
         self.not_in_room = False
         self.join_time = 0
+        self.is_joined = False
 
     def on_modified(self, event):
         if event.is_directory:
@@ -60,6 +61,7 @@ class LogEventHandler(watchdog.events.PatternMatchingEventHandler):
                         + colorama.Fore.WHITE
                     )
             self.is_first = False
+            self.is_joined = True
             print()
 
         else:
@@ -167,10 +169,12 @@ class LogEventHandler(watchdog.events.PatternMatchingEventHandler):
                                 + colorama.Fore.WHITE
                                 + "Not sending message. local user."
                             )
+                            self.is_joined = True
                         else:
-                            send_line_notify(
-                                "[" + now_time + "] " + "Player joined: " + nickname
-                            )
+                            if self.is_joined is True:
+                                send_line_notify(
+                                    "[" + now_time + "] " + "Player joined: " + nickname
+                                )
 
                     elif "OnPlayerLeft " in found_line:
                         nickname = found_line.split("OnPlayerLeft ")[1].replace(
@@ -198,10 +202,12 @@ class LogEventHandler(watchdog.events.PatternMatchingEventHandler):
                                 + colorama.Fore.WHITE
                                 + "Not sending message. local user."
                             )
+                            self.is_joined = False
                         else:
-                            send_line_notify(
-                                "[" + now_time + "] " + "Player left: " + nickname
-                            )
+                            if self.is_joined is True:
+                                send_line_notify(
+                                    "[" + now_time + "] " + "Player left: " + nickname
+                                )
 
             self.last_lines = found_line
 
